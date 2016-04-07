@@ -1,0 +1,39 @@
+#!/bin/bash
+
+function pubfile()
+{
+	if [ ! -f $1 ]; then
+		echo ERROR: File $1 does not exist.
+		exit
+	fi
+
+	dstfile=~/bin/$2
+	echo Publishing $1...
+	cp $1 $dstfile
+	chmod +x $dstfile
+}
+
+if [ -z "$1" ]; then
+	buildconfig=Release
+else
+	buildconfig=Debug
+fi
+
+# Publish CDD files
+subfolder=cddx/bin/$buildconfig
+pubfile $subfolder/cddx.exe cddx.exe
+pubfile cddx/cdd.sh cdd.sh
+
+# Publish PDD files
+subfolder=pddx/bin/$buildconfig
+pubfile $subfolder/pddx.exe pddx.exe
+pubfile pddx/pdd.sh pdd.sh
+
+# Publish SDD files
+subfolder=sdd/bin/$buildconfig
+pubfile $subfolder/sdd.exe sdd
+
+echo
+echo Add the following aliases to your .bashrc file:
+
+cat cddx/aliases
