@@ -72,6 +72,7 @@ namespace powertools
 							else
 							{
 								CreateWinCDScript(namedlocation);
+								CreatePowershellCDScript(namedlocation);
 							}
 
 							PushCurrentLocation(db);
@@ -128,6 +129,20 @@ namespace powertools
 			File.WriteAllLines(scriptfilename, new string[] {
 							"@echo off",
 							$"cd /d \"{namedlocation.Location}\""
+						});
+		}
+
+		/// <summary>
+		/// Create the temporary script that the calling script will execute in order to
+		/// change the parent process's currenty location. It can't be changed directly by
+		/// this process.  This is the Powershell version.
+		/// </summary>
+		/// <param name="namedlocation"></param>
+		private static void CreatePowershellCDScript(NamedLocation namedlocation)
+		{
+			string scriptfilename = Path.Combine(GetLocalAppDataFolder(), "changedir.ps1");
+			File.WriteAllLines(scriptfilename, new string[] {
+							$"set-location \"{namedlocation.Location}\""
 						});
 		}
 	}

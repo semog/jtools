@@ -457,6 +457,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="pdd.cmd" />
+    <None Include="pdd.ps1" />
     <None Include="pdd.sh" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

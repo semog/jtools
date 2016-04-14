@@ -457,6 +457,7 @@
   <ItemGroup>
     <None Include="aliases" />
     <None Include="cdd.cmd" />
+    <None Include="cdd.ps1" />
     <None Include="cdd.sh" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

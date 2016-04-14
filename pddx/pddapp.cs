@@ -100,6 +100,7 @@ namespace powertools
 							else
 							{
 								CreateWinPDScript(location);
+								CreatePowershellPDScript(location);
 							}
 
 							retval = 1;
@@ -144,6 +145,20 @@ namespace powertools
 			File.WriteAllLines(scriptfilename, new string[] {
 							"@echo off",
 							$"cd /d \"{location.Location}\""
+						});
+		}
+
+		/// <summary>
+		/// Create the temporary script that the calling script will execute in order to
+		/// change the parent process's currenty location. It can't be changed directly by
+		/// this process.  This is the Powershell version.
+		/// </summary>
+		/// <param name="location"></param>
+		private static void CreatePowershellPDScript(LocationHistory location)
+		{
+			string scriptfilename = Path.Combine(GetLocalAppDataFolder(), "popdir.ps1");
+			File.WriteAllLines(scriptfilename, new string[] {
+							$"set-location \"{location.Location}\""
 						});
 		}
 	}
