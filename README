@@ -1,0 +1,34 @@
+For PowerShell support, add the following functions to your profile init script
+(located in C:\$env:HOMEPATH\Documents\WindowsPowerShell\Microsoft.Powershell_profile.ps1)
+
+-------- 8< ---- BEGIN SNIP ---- 8< --------
+
+function cdd()
+{
+	cddx $args
+	if($lastexitcode -eq 1)
+	{
+		$private:changedirscript = "$env:localappdata\powertools\changedir.ps1"
+		if(test-path $private:changedirscript)
+		{
+			. $private:changedirscript
+			remove-item $private:changedirscript | out-null
+		}
+	}
+}
+
+function pdd()
+{
+	pddx $args
+	if($lastexitcode -eq 1)
+	{
+		$private:popdirscript = "$env:localappdata\powertools\popdir.ps1"
+		if(test-path $private:popdirscript)
+		{
+			. $private:popdirscript
+			remove-item $private:popdirscript | out-null
+		}
+	}
+}
+
+-------- 8< ---- END SNIP ---- 8< --------

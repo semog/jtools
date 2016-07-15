@@ -9,15 +9,15 @@ if "%buildconfig%"=="" (
 rem Publish CDD files
 call :pubfile cddx\bin\%buildconfig%\cddx.exe
 call :pubfile cddx\cdd.cmd
-call :pubfile cddx\cdd.ps1
 
 rem Publish PDD files
 call :pubfile pddx\bin\%buildconfig%\pddx.exe
 call :pubfile pddx\pdd.cmd
-call :pubfile pddx\pdd.ps1
 
 rem Publish SDD files
 call :pubfile sdd\bin\%buildconfig%\sdd.exe
+
+echo For PowerShell Support, see the README file to add global functions.
 
 goto :eof
 
