@@ -1,2 +1,3 @@
 alias cdd='. cdd.sh'
 alias pdd='. pdd.sh'
+alias sdd='. sdd.sh'
