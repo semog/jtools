@@ -11,6 +11,10 @@ function pubfile()
 	echo Publishing $1...
 	cp $1 $dstfile
 	chmod +x $dstfile
+	if [ $3 = true ]; then
+		echo Optimizing $dstfile...
+		mono --aot -O=all $dstfile
+	fi
 }
 
 if [ -z "$1" ]; then
@@ -21,17 +25,18 @@ fi
 
 # Publish CDD files
 subfolder=cddx/bin/$buildconfig
-pubfile $subfolder/cddx.exe cddx.exe
-pubfile cddx/cdd.sh cdd.sh
+pubfile $subfolder/cddx.exe cddx.exe true
+pubfile cddx/cdd.sh cdd.sh false
 
 # Publish PDD files
 subfolder=pddx/bin/$buildconfig
-pubfile $subfolder/pddx.exe pddx.exe
-pubfile pddx/pdd.sh pdd.sh
+pubfile $subfolder/pddx.exe pddx.exe true
+pubfile pddx/pdd.sh pdd.sh false
 
 # Publish SDD files
 subfolder=sdd/bin/$buildconfig
-pubfile $subfolder/sdd.exe sdd
+pubfile $subfolder/sdd.exe sddx.exe true
+pubfile sdd/sdd.sh sdd.sh false
 
 echo
 echo Add the following aliases to your .bashrc file:

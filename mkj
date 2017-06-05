@@ -27,5 +27,5 @@ esac
 shift
 done
 
-mdtool build -t:$buildaction -c:$buildconfig jtools.sln
+msbuild /target:$buildaction /property:Configuration=$buildconfig /nodeReuse:false jtools.sln
 

@@ -8,7 +8,7 @@ function changedir()
 	fi
 }
 
-pddx.exe $*
+mono `which pddx.exe` $*
 if [ $? -eq 1 ]; then
 	changedir
 fi
