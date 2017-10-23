@@ -4,9 +4,9 @@ if exist "%localappdata%\powertools\changedir.cmd" (
 )
 cddx %*
 if not errorlevel 1 (
-	return
+	goto :eof
 )
 if not exist "%localappdata%\powertools\changedir.cmd" (
-	return
+	goto :eof
 )
 "%localappdata%\powertools\changedir.cmd"

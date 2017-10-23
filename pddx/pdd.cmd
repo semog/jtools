@@ -4,9 +4,9 @@ if exist "%localappdata%\powertools\popdir.cmd"  (
 )
 pddx %*
 if not errorlevel 1 (
-	return
+	goto :eof
 )
 if not exist "%localappdata%\powertools\popdir.cmd"  (
-	return
+	goto :eof
 )
 "%localappdata%\powertools\popdir.cmd"

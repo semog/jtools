@@ -24,7 +24,7 @@ goto :eof
 :pubfile
 if not exist "%1" (
 	echo ERROR: File %1 does not exist.
-	exit
+	goto :eof
 )
 
 echo Copying %1...
